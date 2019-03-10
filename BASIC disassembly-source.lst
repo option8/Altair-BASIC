@@ -1,12 +1,19 @@
-; ----------------------------------------------------------------------------
-;	Micro-Soft Altair BASIC 3.2 (4K) - Annotated Disassembly
-;		
-;	Copyright 1975, Bill Gates, Paul Allen, Monte Davidoff
-;	Source: http://altairbasic.org/ compiled by Reuben Harris
-;	Additional cleanup, relocation by Charles Mangin, March, 2019
-; ----------------------------------------------------------------------------
+              	; --------------------------------------
+              	; zasm: assemble "BASIC disassembly-source.txt"
+              	; opts: --asm8080
+              	; date: 2019-03-10 19:52:16
+              	; --------------------------------------
 
 
+              	; ----------------------------------------------------------------------------
+              	;Micro-Soft Altair BASIC 3.2 (4K) - Annotated Disassembly
+              	;	
+              	;Copyright 1975, Bill Gates, Paul Allen, Monte Davidoff
+              	;Source: http://altairbasic.org/ compiled by Reuben Harris
+              	;Additional cleanup, relocation by Charles Mangin, March, 2019
+              	; ----------------------------------------------------------------------------
+              	
+              	
 0000:         	 	ORG	00
               	
 0000: F3      	Start	DI	
@@ -66,7 +73,7 @@
 0052: E308    		DW FMul	;*
 0054: 7C      		DB 7Ch 
 0055: 2F09    		DW FDiv	;/
-0057: 454EC4  	KEYWORDS	DB 454EC4h	;	"END"	80
+0057: 454EC4  	KEYWORDS	DB 454EC4h	;"END"	80
 005A: 464FD2  		DB 464FD2h	; 	"FOR"
 005D: 4E4558D4		DB 4E4558D4h	; 	"NEXT"	82
 0061: 444154C1		DB 444154C1h	; 	"DATA"	83
@@ -137,18 +144,18 @@
 00F6: A602    		DW Clear	;CLEAR
 00F8: 9502    		DW New	;NEW
               	
-00FA: 4EC6    	ERROR_CODES	DB 4EC6h	;		"NF"	NEXT without FOR.
-00FC: 53CE    		DB 53CEh	;		"SN"	Syntax Error
-00FE: 52C7    		DB 52C7h	;		"RG"	RETURN without GOSUB.
-0100: 4FC4    		DB 4FC4h	;		"OD"	Out of Data
-0102: 46C3    		DB 46C3h	;		"FC"	Illegal Function Call
-0104: 4FD6    		DB 4FD6h	;		"OV"	Overflow.
-0106: 4FCD    		DB 4FCDh	;		"OM"	Out of memory.
-0108: 55D3    		DB 55D3h	;		"US"	Undefined Subroutine
-010A: 42D3    		DB 42D3h	;		"BS"	Bad Subscript
-010C: 44C4    		DB 44C4h	;		"DD"	Duplicate Definition
-010E: 2FB0    		DB 2FB0h	;		"\0"	Division by zero.
-0110: 49C4    		DB 49C4h	;		"ID"	Invalid in Direct mode.
+00FA: 4EC6    	ERROR_CODES	DB 4EC6h	;"NF"	NEXT without FOR.
+00FC: 53CE    		DB 53CEh	;"SN"	Syntax Error
+00FE: 52C7    		DB 52C7h	;"RG"	RETURN without GOSUB.
+0100: 4FC4    		DB 4FC4h	;"OD"	Out of Data
+0102: 46C3    		DB 46C3h	;"FC"	Illegal Function Call
+0104: 4FD6    		DB 4FD6h	;"OV"	Overflow.
+0106: 4FCD    		DB 4FCDh	;"OM"	Out of memory.
+0108: 55D3    		DB 55D3h	;"US"	Undefined Subroutine
+010A: 42D3    		DB 42D3h	;"BS"	Bad Subscript
+010C: 44C4    		DB 44C4h	;"DD"	Duplicate Definition
+010E: 2FB0    		DB 2FB0h	;"\0"	Division by zero.
+0110: 49C4    		DB 49C4h	;"ID"	Invalid in Direct mode.
               	
 0112: 2C      	 	DB ','	; 
 0113: 00000000	LINE_BUFFER	DW 0000,0000,0000,0000h	;72 chars
@@ -167,7 +174,7 @@
 0147: 00000000	
 014B: 00000000		DW 0000,0000,0000,0000h	;
 014F: 00000000	
-0153: 00000000		DW 0000,0000,0000,0000h	;			
+0153: 00000000		DW 0000,0000,0000,0000h	;		
 0157: 00000000	
               	
 015B: 00      	DIM_OR_EVAL	DB 00h	; 
@@ -208,7 +215,7 @@
 01A2: C8      		RZ	;Return if var ptrs match.
 01A3: 09      		DAD B	;HL+=000D
 01A4: C39601  		JMP GetFlowPtr+4	;Loop
-01A7: CDC301  	CopyMemoryUp	CALL CheckEnoughMem;	
+01A7: CDC301  	CopyMemoryUp	CALL CheckEnoughMem;
 01AA: C5      		PUSH B	;Exchange BC with HL.
 01AB: E3      		XTHL	;
 01AC: C1      		POP B	;
@@ -224,7 +231,7 @@
 01BA: 0600    		MVI B,00h	;BC=C*4
 01BC: 09      		DAD B	;
 01BD: 09      		DAD B	;
-01BE: CDC301  		CALL CheckEnoughMem;	
+01BE: CDC301  		CALL CheckEnoughMem;
 01C1: E1      		POP H	;
 01C2: C9      		RET	;
 01C3: D5      	CheckEnoughMem	PUSH D	;
@@ -323,7 +330,7 @@
 025A: 23      		INX H	;
 025B: 13      		INX D	;
 025C: B7      		ORA A	;
-025D: C25802  		JNZ CopyFromBuffer+3;	
+025D: C25802  		JNZ CopyFromBuffer+3;
 0260: CDA202  	UpdateLinkedList	CALL ResetAll	;
 0263: 23      		INX H	;
 0264: EB      		XCHG	;
@@ -1220,7 +1227,7 @@
 0842: 23      		INX H	;Flip the sign in FTEMP_SIGN.
 0843: 34      		INR M	; 
 0844: CAA408  		JZ Overflow	;Error out if exponent overflowed.
-0847: CDD608  		CALL FMantissaRtOnce;	Shift mantissa one place right
+0847: CDD608  		CALL FMantissaRtOnce;Shift mantissa one place right
 084A: C37E08  		JMP FRoundUp	;Jump ahead.
 084D: AF      	FSubMantissas	XRA A	;B=0-B
 084E: 90      		SUB B	;
@@ -1618,7 +1625,7 @@
 0A86: FC9B0A  		CM FMantissaDec	
 0A89: 3E98    		MVI A,98h	
 0A8B: 90      		SUB B	;by (24-exponent) places?
-0A8C: CDC908  		CALL FMantissaRtMult	;	WHY?
+0A8C: CDC908  		CALL FMantissaRtMult	;WHY?
 0A8F: 7C      		MOV A,H	
 0A90: 17      		RAL	
 0A91: DC9A08  		CC FMantissaInc	
@@ -1852,7 +1859,7 @@
 0C1B: 0A0000  		DB 0x0A,0x00,0x00	; DT 10	 
 0C1E: 010000  		DB 0x01,0x00,0x00	; DT 1	 
 0C21: EF      	Sqr	RST 05	; FTestSign	;
-0C22: FA9804  		JM FunctionCallError;	
+0C22: FA9804  		JM FunctionCallError;
 0C25: C8      		RZ	;
 0C26: 217201  		LXI H,FACCUM+3	;
 0C29: 7E      		MOV A,M	;
@@ -1964,14 +1971,14 @@
 0CFC: 3D      		DCR A	;ecrement #terms and loop back if not
 0CFD: C2E90C  		JNZ TaylorLoop	;one all 4 of them.
 0D00: C3E308  		JMP FMul	;
-0D03: BAD71E86	TAYLOR_SERIES	DB 0xBA,0xD7,0x1E,0x86	;	DD 39.710670	 
-0D07: 64269987		DB 0x64,0x26,0x99,0x87	;	DD -76.574982	 
-0D0B: 58342387		DB 0x58,0x34,0x23,0x87	;	DD 81.602234	 
-0D0F: E05DA586		DB 0xE0,0x5D,0xA5,0x86	;	DD -41.341675	 
-0D13: DA0F4983		DB 0xDA,0x0F,0x49,0x83	;	DD 6.283185	 
-0D17: 00000000		DB 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00	;	   DD 6.283185
+0D03: BAD71E86	TAYLOR_SERIES	DB 0xBA,0xD7,0x1E,0x86	;DD 39.710670	 
+0D07: 64269987		DB 0x64,0x26,0x99,0x87	;DD -76.574982	 
+0D0B: 58342387		DB 0x58,0x34,0x23,0x87	;DD 81.602234	 
+0D0F: E05DA586		DB 0xE0,0x5D,0xA5,0x86	;DD -41.341675	 
+0D13: DA0F4983		DB 0xDA,0x0F,0x49,0x83	;DD 6.283185	 
+0D17: 00000000	L0D17	DB 0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00	;   DD 6.283185
 0D1B: 00...   	
-0D21: 211A0F  	Init	LXI H,0F1Ah	;
+0D21: 211A0F  	Init	LXI H,0x0F1A	; *** STACK_TOP RELOCATE
 0D24: F9      		SPHL	;
 0D25: 226301  		SHLD STACK_TOP	;
 0D28: DB01    		IN 01	;
@@ -1999,7 +2006,7 @@
 0D51: 1D      		DCR E	;
 0D52: D8      		RC	;
 0D53: 17      		RAL	;
-0D54: DA6F0D  		JC 0D6Fh	;
+0D54: DA6F0D  		JC L0D6F	;
 0D57: 43      		MOV B,E	;
 0D58: 1180C2  		LXI D,0xC280	;
 0D5B: 17      		RAL	;
@@ -2015,7 +2022,7 @@
 0D68: CD8B0D  		CALL L0D8B	;
 0D6B: 37      		STC	;
 0D6C: C34B0D  		JMP L0D4B	;
-0D6F: AF      		XRA A	;
+0D6F: AF      	L0D6F	XRA A	;
 0D70: CD8B0D  		CALL L0D8B	;
 0D73: CD870D  		CALL L0D87	;
 0D76: CD870D  		CALL L0D87	;
@@ -2129,7 +2136,7 @@
 0E4A: 23      		INX H	
 0E4B: 226501  		SHLD PROGRAM_BASE	
 0E4E: E3      		XTHL	
-0E4F: 111A0F  		LXI D,0F1Ah	
+0E4F: 111A0F  		LXI D,0F1Ah	; *** RELOCATE STACK_TOP	
 0E52: E7      		RST 4	
 0E53: DACD01  		JC OutOfMemory	
 0E56: D1      		POP D	
@@ -2156,17 +2163,17 @@
 0E81: 220200  		SHLD Start+2	
 0E84: E9      		PCHL	
               	
-0E85: 170D    	OPT_FN_DESCS	DW 0D17h	
+0E85: 170D    	OPT_FN_DESCS	DW L0D17	
 0E87: 990E    	 	DW szWantSin	
 0E89: 4900    	 	DW KW_INLINE_FNS+12	
-0E8B: 950C    	 	DW 0C95h	
+0E8B: 950C    	 	DW Sin	
 0E8D: A20E    	 	DW szWantRnd	
 0E8F: 4700    	 	DW KW_INLINE_FNS+10	
-0E91: 5F0C    	 	DW 0C5Fh	
+0E91: 5F0C    	 	DW Rnd	
 0E93: AB0E    	 	DW szWantSqr	
 0E95: 4500    	 	DW KW_INLINE_FNS+8	
               	
-0E97: 210C    	 	DW 0C21h	
+0E97: 210C    	 	DW Sqr	
               	
 0E99: 57414E54	szWantSin	DB 57414E54205349CE00h	; DS "WANT SIN\0"
 0E9D: 205349CE	
@@ -2203,3 +2210,7 @@
               	
               	
 0EFC: 00      	UnusedMemory	DB 00
+
+
+total time: 0.0312 sec.
+no errors
