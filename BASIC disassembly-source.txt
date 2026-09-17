@@ -12,8 +12,9 @@
 Start	DI	
 	JMP Init	
 
-	DW 0490h	
-	DW 07F9h	
+	DW 0490h	; Address of a USER routine that retrieve arguments passed from Basic 
+	DW 07F9h	; Address to USER routine to return arguments from machine language program.
+				; re: appendix J of 1975 Basic user manual (thanks Paolo Carrer)
 
 SyntaxCheck	MOV A,M	;A=Byte of BASIC program.
 	XTHL	;HL=return address.
