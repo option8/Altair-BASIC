@@ -19,8 +19,9 @@
 0000: F3      	Start	DI	
 0001: C3210D  		JMP Init	
               	
-0004: 9004    		DW 0490h	
-0006: F907    		DW 07F9h	
+0004: 9004    		DW 0490h	; Address of a routine that retrieve arguments passed from Basic 
+0006: F907    		DW 07F9h	; Address to routine to return arguments from machine language program.
+                            ; re: appendix J of 1975 Basic user manual (thanks Paolo Carrer)
               	
 0008: 7E      	SyntaxCheck	MOV A,M	;A=Byte of BASIC program.
 0009: E3      		XTHL	;HL=return address.
